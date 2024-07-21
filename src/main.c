@@ -11,7 +11,7 @@ void print_usage(char *argv[]) {
     printf("\t -n - create a new database file\n");
     printf("\t -f - (required) path to database file\n");
     
-    return 0;
+    return;
 }
 
 
@@ -19,6 +19,7 @@ int main(int argc, char *argv[]) {
     boot newfile = false;
     char *filepath = NULL;
     int c;
+    int fdDb = -1;
 
     while ((c = getopt(argc, argv, "nf:")) != -1) {
         switch (c) {
@@ -40,6 +41,20 @@ int main(int argc, char *argv[]) {
         print_usage(argv[]);
 
         return 0;
+    }
+
+    if (newfile) {
+        fdDb = create_db_file(filepath);
+        if (fdDb == STATUS_ERROR) {
+            printf("Cannot create database file\n")
+            return -1;
+        }
+    } else {
+        fdDb = open_db_file(filepath);
+        if (fdDb == STATUS_ERROR) {
+            printf("Cannot open database file\n")
+            return -1;
+        }
     }
 
     printf("Newfile: %d\n", newfile);
