@@ -11,15 +11,15 @@ struct dbheader_t {
 };
 
 struct employee_t {
-    char name[256];
-    char address[256];
+    char name[64];
+    char address[64];
     unsigned int hours;
 };
 
 int create_db_header(int fd, struct dbheader_t **headerOut);
 int validate_db_header(int fd, struct dbheader_t **headerOut);
 int read_emplyees(int fd, struct dbheader_t *, struct employee_t **employeesOut);
-void output_file(int fd, struct dbheader_t *);
+void output_file(int fd, struct dbheader_t *, struct employee_t *employees);
 
 
 #endif
