@@ -4,6 +4,9 @@ OBJ = $(patsubst src/%.c, obj/%.o, $(SRC))
 
 run: clean default
 	./$(TARGET) -n -f mynewdb.db
+	./$(TARGET) -f mynewdb.db -a "Tom Bombadil, Valley of Withywindle, -1"
+	./$(TARGET) -f mynewdb.db -l
+
 
 default: $(TARGET)
 
