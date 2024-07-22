@@ -15,7 +15,7 @@ int create_db_file(char *filename) {
     if (fd != -1) {
         close(fd);
         printf("File already exists\n");
-        return STATUS_ERROR
+        return STATUS_ERROR;
     }
 
     fd = open(filename, O_RDWR | O_CREAT, 0640);
